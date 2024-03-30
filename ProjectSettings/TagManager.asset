@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Map
+    uniqueID: 269837563
+    locked: 0
+  - name: Route
+    uniqueID: 918400513
+    locked: 0
+  - name: Agent
+    uniqueID: 4132637109
+    locked: 0
+  - name: start_destination
+    uniqueID: 288562477
+    locked: 0
