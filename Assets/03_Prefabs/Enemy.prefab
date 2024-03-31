@@ -205,10 +205,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tilemap: {fileID: 0}
-  _HpBar: {fileID: 0}
+  _hpBar: {fileID: 0}
   _tile: {fileID: 0}
+  _flagtile: {fileID: 11400000, guid: f49e55cf1c61ada44aacf0a99a8aeeea, type: 2}
   _beforeDirection: {x: 0, y: -1, z: 0}
-  _moveSpeed: 2
+  _moveSpeed: 2.5
+  _playerHp: {fileID: 0}
 --- !u!1001 &7335085696361651912
 PrefabInstance:
   m_ObjectHideFlags: 0

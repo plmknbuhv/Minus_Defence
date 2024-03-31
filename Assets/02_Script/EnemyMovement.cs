@@ -10,17 +10,20 @@ using UnityEngine.Tilemaps;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private Tilemap _tilemap;
-    [SerializeField] private HpBar _HpBar;
+    [SerializeField] private HpBar _hpBar;
     [SerializeField] private TileBase _tile;
+    [SerializeField] private TileBase _flagtile;
     [SerializeField] private Vector3Int _beforeDirection;
     [SerializeField] private float _moveSpeed;
+    [SerializeField] private PlayerHp _playerHp;
     private Transform _transform;
 
     private void Awake()
     {
         _tilemap = GameObject.Find("Route").GetComponent<Tilemap>();
-        _HpBar = transform.Find("HpBar").GetComponent<HpBar>();
+        _hpBar = transform.Find("HpBar").GetComponent<HpBar>();
         _transform = transform.Find("Visual");
+        _playerHp = GameObject.Find("PlayerHpBar").GetComponent<PlayerHp>();
     }
 
     private void Start()
@@ -30,20 +33,24 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
-        if (_HpBar.curHp <= 0)
+        if (_hpBar.curHp <= 0)
         {
+            DOTween.Kill(transform);
             Destroy(gameObject);
-            DOTween.Kill(transform);   
         }
     }
 
-    private IEnumerator FindRoute() 
+    private void OnDestroy()
+    {
+        DOTween.Kill(transform);
+    }
+
+    private IEnumerator FindRoute()
     {
         while (true) // 무한 반복문
         {
             if (gameObject != null)
             {
-
                 yield return null; // 아무 것도 리턴하지 않으면 빠르게 반복해 터지니까 한틱씩 리턴
 
                 if (Input.GetKeyDown(KeyCode.F12)) // 만약 f12를 누르면 
@@ -83,10 +90,11 @@ public class EnemyMovement : MonoBehaviour
                         _beforeDirection = dir;
                         yield return new WaitForSeconds(1 / _moveSpeed);
                     }
-                    else
+                    if (_tilemap.GetTile(_tilemap.WorldToCell(transform.position)) == _flagtile) // 타일이 있다면
                     {
-
                         Destroy(gameObject);
+                        _playerHp.PlayerHit();
+                        break;
                     }
                 }
             }
@@ -98,7 +106,7 @@ public class EnemyMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             Destroy(collision.gameObject);
-            _HpBar.Hit();
+            _hpBar.Hit();
         }
     }
 }

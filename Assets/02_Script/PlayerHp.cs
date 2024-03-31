@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class HpBar : MonoBehaviour
+public class PlayerHp : MonoBehaviour
 {
     private float maxHp = 100;
     public float curHp = 100;
@@ -14,12 +14,17 @@ public class HpBar : MonoBehaviour
         _transform = transform.Find("Pivot").transform;
 
         _transform.localScale = Vector3.one;
-
     }
 
-    public void Hit()
+    public void PlayerHit()
     {
         curHp -= 33.4f;
-        _transform.localScale = new Vector3(curHp / maxHp, 1, 1);
+        _transform.localScale = new Vector3((float)curHp / (float)maxHp, 1, 1);
+        if (curHp <= 0 )
+        {
+            SceneManager.LoadScene(0);
+        }    
     }
+
+    
 }

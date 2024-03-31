@@ -8,20 +8,24 @@ public class Fire : MonoBehaviour
     private bool isDelay;
     [SerializeField] private GameObject _bullet;
     [HideInInspector] public Collider2D _collision;
+    public bool _canFire = false;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (_canFire)
         {
-            if (!isDelay)
+            if (collision.gameObject.CompareTag("Enemy"))
             {
-                isDelay = true;
-                GameObject c_Bullet = Instantiate(_bullet, transform);
-                StartCoroutine("Fire_Delay");
+                if (!isDelay)
+                {
+                    isDelay = true;
+                    GameObject c_Bullet = Instantiate(_bullet, transform);
+                    StartCoroutine("Fire_Delay");
 
-                Bullet bullet = c_Bullet.GetComponent<Bullet>();
+                    Bullet bullet = c_Bullet.GetComponent<Bullet>();
 
-                bullet.obj = collision.gameObject;
+                    bullet.obj = collision.gameObject;
+                }
             }
         }
     }
