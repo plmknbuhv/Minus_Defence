@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _Enemy;
+    [SerializeField] private GameObject EnemyPrefabs;
 
     private void Start()
     {
@@ -20,8 +21,9 @@ public class EnemySpawner : MonoBehaviour
                 break;
             }
 
-            Instantiate(_Enemy, transform);
-            yield return new WaitForSeconds(2.5f);
+            GameObject enemy = Instantiate(EnemyPrefabs, transform);
+
+            yield return new WaitForSeconds(2.8f);
 
         }
     }

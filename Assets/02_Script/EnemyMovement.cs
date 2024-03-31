@@ -62,6 +62,7 @@ public class EnemyMovement : MonoBehaviour
                     }
 
                     transform.DOMove(tilepos, 1 / _moveSpeed).SetEase(Ease.Linear);
+
                     _beforeDirection = dir;
                     yield return new WaitForSeconds(1 / _moveSpeed);
                 }

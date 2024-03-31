@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -11,9 +12,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Route
+  - Enemy
+  - Player
   - 
   - 
   - 
@@ -47,9 +48,12 @@ TagManager:
   - name: Route
     uniqueID: 918400513
     locked: 0
+  - name: Bullet
+    uniqueID: 1034896917
+    locked: 0
   - name: Agent
     uniqueID: 4132637109
     locked: 0
-  - name: start_destination
+  - name: Start_Destination
     uniqueID: 288562477
     locked: 0
