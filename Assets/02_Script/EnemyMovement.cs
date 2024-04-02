@@ -42,6 +42,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnDestroy()
     {
+        MoneyManager.Instance.SetMoney(50);
         DOTween.Kill(transform);
     }
 
