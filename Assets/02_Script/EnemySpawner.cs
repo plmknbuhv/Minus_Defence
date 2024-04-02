@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
 
             GameObject enemy = Instantiate(EnemyPrefabs, transform);
 
-            yield return new WaitForSeconds(2.8f);
+            yield return new WaitForSeconds(2.5f);
 
         }
     }

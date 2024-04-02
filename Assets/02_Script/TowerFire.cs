@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Fire : MonoBehaviour
+public class TowerFire : MonoBehaviour
 {
     private bool isDelay;
     [SerializeField] private GameObject _bullet;
     [HideInInspector] public Collider2D _collision;
+    [HideInInspector] public GameObject _obj;
     public bool _canFire = false;
+    Vector3 point;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -26,6 +28,21 @@ public class Fire : MonoBehaviour
 
                     bullet.obj = collision.gameObject;
                 }
+            }
+        }
+    }
+
+    private void Update()
+    {
+        if (!_canFire) 
+        {
+            point = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
+                Input.mousePosition.y, -Camera.main.transform.position.z));
+            transform.position = point;
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                _canFire = true;
             }
         }
     }
