@@ -6,6 +6,9 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject EnemyPrefabs;
+    public float _spawnDelay = 11.5f;
+    [SerializeField] private int _spawnCount = 1;
+    [SerializeField] private int _spawnNum = 3;
 
     private void Start()
     {
@@ -21,10 +24,21 @@ public class EnemySpawner : MonoBehaviour
                 break;
             }
 
-            GameObject enemy = Instantiate(EnemyPrefabs, transform);
+            for (int i = 0; i < _spawnNum; i++)
+            {
+                Instantiate(EnemyPrefabs, transform);
+                yield return new WaitForSeconds(0.54f);
+            }
+            _spawnCount++;
 
-            yield return new WaitForSeconds(2.5f);
+            if (_spawnCount == 2)
+            {
+                MoneyManager._wave += 5;
+                _spawnNum++;
+                _spawnCount = 0;
+            }
 
+            yield return new WaitForSeconds(_spawnDelay);
         }
     }
 }

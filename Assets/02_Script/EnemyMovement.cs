@@ -42,7 +42,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnDestroy()
     {
-        MoneyManager.Instance.SetMoney(50);
+        MoneyManager.Instance.SetMoney(Random.Range(8 + MoneyManager._wave / 5, 11 + MoneyManager._wave / 5));
         DOTween.Kill(transform);
     }
 
@@ -102,6 +102,7 @@ public class EnemyMovement : MonoBehaviour
 
         }
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))

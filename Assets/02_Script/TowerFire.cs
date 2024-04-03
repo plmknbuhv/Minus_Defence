@@ -43,9 +43,9 @@ public class TowerFire : MonoBehaviour
                 Input.mousePosition.y, -Camera.main.transform.position.z));
             transform.position = point;
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && MoneyManager.Instance.origin  >= 50 + MoneyManager._wave)
             {
-                Collider2D col = Physics2D.OverlapCircle(point, 0.4f);
+                Collider2D col = Physics2D.OverlapCircle(point, 0.35f);
                 bool isContact = col == null;
                 //bool isContact = Physics2D.OverlapCircle(point, 0.6f);
                 Debug.Log(isContact + col?.gameObject.name);
@@ -55,13 +55,14 @@ public class TowerFire : MonoBehaviour
                 }
                 _distanceCol.enabled = true;
                 _canFire = true;
+                MoneyManager.Instance.SpendMoney(50 + MoneyManager._wave);
             }
         }
     }
 
     private IEnumerator Fire_Delay()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.33f);
         isDelay = false;
     }
 }

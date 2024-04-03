@@ -13,9 +13,4 @@ public class EventManager : MonoBehaviour
         c_Tower = Instantiate(_towerPrefab);
         TowerFire _tower = GetComponent<TowerFire>();
     }
-
-    public void SecondButtonClick() 
-    {
-
-    }
 }

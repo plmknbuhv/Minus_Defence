@@ -14,12 +14,11 @@ public class HpBar : MonoBehaviour
         _transform = transform.Find("Pivot").transform;
 
         _transform.localScale = Vector3.one;
-
     }
 
     public void Hit()
     {
-        curHp -= 33.4f;
+        curHp -= 20f;
         _transform.localScale = new Vector3(curHp / maxHp, 1, 1);
     }
 }

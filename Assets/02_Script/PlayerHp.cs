@@ -18,13 +18,11 @@ public class PlayerHp : MonoBehaviour
 
     public void PlayerHit()
     {
-        curHp -= 33.4f;
+        curHp -= 20f;
         _transform.localScale = new Vector3((float)curHp / (float)maxHp, 1, 1);
         if (curHp <= 0 )
         {
             SceneManager.LoadScene(0);
         }    
     }
-
-    
 }
